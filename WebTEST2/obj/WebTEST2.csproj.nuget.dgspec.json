@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alireza Hahsemi\\Documents\\GitHub\\WebTEST2\\WebTEST2\\WebTEST2.csproj": {}
+    "C:\\1\\WebTEST2\\WebTEST2\\WebTEST2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alireza Hahsemi\\Documents\\GitHub\\WebTEST2\\WebTEST2\\WebTEST2.csproj": {
+    "C:\\1\\WebTEST2\\WebTEST2\\WebTEST2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alireza Hahsemi\\Documents\\GitHub\\WebTEST2\\WebTEST2\\WebTEST2.csproj",
+        "projectUniqueName": "C:\\1\\WebTEST2\\WebTEST2\\WebTEST2.csproj",
         "projectName": "WebTEST2",
-        "projectPath": "C:\\Users\\Alireza Hahsemi\\Documents\\GitHub\\WebTEST2\\WebTEST2\\WebTEST2.csproj",
-        "packagesPath": "C:\\Users\\Alireza Hahsemi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alireza Hahsemi\\Documents\\GitHub\\WebTEST2\\WebTEST2\\obj\\",
+        "projectPath": "C:\\1\\WebTEST2\\WebTEST2\\WebTEST2.csproj",
+        "packagesPath": "C:\\Users\\aminz\\.nuget\\packages\\",
+        "outputPath": "C:\\1\\WebTEST2\\WebTEST2\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Alireza Hahsemi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\aminz\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -70,8 +65,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -83,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

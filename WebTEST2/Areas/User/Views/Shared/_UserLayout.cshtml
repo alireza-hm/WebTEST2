@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Pure HTML CSS Admin Template</title>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <link rel="stylesheet" href="~/css/admin.css" />
+    <title>@ViewData["Title"] - WebTEST2</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <!-- (A) SIDEBAR -->
+    <div id="pgside" >
+        <!-- (A1) BRANDING OR USER -->
+        <!-- LINK TO DASHBOARD OR LOGOUT -->
+        <div id="pguser">
+            <img src="~/images/potato.png">
+            @{
+                var claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
+                if (claimsIdentity != null)
+                {
+                    var c = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+                    if (c != null)
+                    {
+                        <p>welcome :  @c.Value.ToString()</p>
+                    }
+                }
+            }
+        </div>
+
+        <!-- (A2) MENU ITEMS -->
+        <a asp-area="User" asp-controller="Profile" asp-action="List" class="current">
+            <i class="ico">&#9733;</i>
+            <i class="txt">Profile</i>
+        </a>
+        <a asp-area="User" asp-controller="Dore" asp-action="List">
+            <i class="ico">&#9728;</i>
+            <i class="txt">Dore ha</i>
+        </a>
+        <a asp-area="Admin" asp-controller="Home" asp-action="Privacy">
+            <i class="ico">&#9737;</i>
+            <i class="txt">Section C</i>
+        </a>
+    </div>
+
+    <!-- (B) MAIN -->
+
+    <main id="pgmain" role="main" class="pb-3">
+        @RenderBody()
+    </main>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,118 @@
+﻿@model WebTEST2.Areas.User.Models.MohtavaModel
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>Register</h1>
+
+<h4>MohtavaModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Register">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+
+                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayFor(model => model.Name)
+            </div>
+            <div class="form-group">
+                @Html.DisplayNameFor(model => model.Date)
+                @Html.DisplayFor(model => model.Date)
+            </div>
+            <div class="form-group">
+                @Html.DisplayNameFor(model => model.Long)
+                @Html.DisplayFor(model => model.Long)
+            </div>
+            <div class="form-group">
+                @Html.DisplayNameFor(model => model.Image)
+                @Html.DisplayFor(model => model.Image)
+            </div>
+            <div class="form-group">
+                @Html.DisplayNameFor(model => model.Descs)
+                @Html.DisplayFor(model => model.Descs)
+            </div>
+            <div class="form-group">
+                @Html.DisplayNameFor(model => model.CatId)
+                @Html.DisplayFor(model => model.CatId)
+            </div>
+            <div class="form-group">
+                <b> ------------------------------ </b>
+                <br />
+                @Html.HiddenFor(model => model.DoreId)
+                @for (int i = 0; i < Model.Vijegiha.Count; i++)
+                {
+                    <tr>
+                        @Html.HiddenFor(model => model.VDid[i])
+                        @Html.HiddenFor(model => model.Vijegiha[i].Id)
+                        @Html.HiddenFor(model => model.Vijegiha[i].Title)
+                        @Html.HiddenFor(model => model.Vijegiha[i].Type)
+                        @Html.DisplayNameFor(model => model.Vijegiha[i].Title)
+                        <br />
+                        @Html.DisplayFor(model => model.Vijegiha[i].Title)
+                        <br />
+                        @if (Model.Vijegiha[i].Type == "multi_choice")
+                        {
+                            <div>
+                                @for (int j = 0; j < Model.Vijegiha[i].Choices.Count; j++)
+                                {
+                                    @Html.HiddenFor(model => model.Vijegiha[i].Choices[j].data)
+                                    @Html.HiddenFor(model => model.Vijegiha[i].Choices[j].number)
+                                    @Html.EditorFor(model => model.Mohtava_Choiced[@i][@j])
+                                    <b> : </b>
+                                    @Model.Vijegiha[i].Choices[j].number
+                                    <b> : </b>
+                                    @Model.Vijegiha[i].Choices[j].data
+                                    <br />
+                                }
+                            </div>
+                            <div class="form-group" hidden>
+                                <label class="control-label">Title</label>
+                                <b> : </b>
+                                    @Html.TextBoxFor(model => model.Mohtava_Title[i])
+                            </div>
+                        }
+                        else
+                        {
+                            <div hidden>
+                                @for (int j = 0; j < Model.Vijegiha[i].Choices.Count; j++)
+                                {
+                                    @Html.HiddenFor(model => model.Vijegiha[i].Choices[j].data)
+                                    @Html.HiddenFor(model => model.Vijegiha[i].Choices[j].number)
+                                    @Html.EditorFor(model => model.Mohtava_Choiced[@i][@j])
+                                    <b> : </b>
+                                    @Model.Vijegiha[i].Choices[j].number
+                                    <b> : </b>
+                                    @Model.Vijegiha[i].Choices[j].data
+                                    <br />
+                                }
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Title</label>
+                                <b> : </b>
+                                    @Html.TextBoxFor(model => model.Mohtava_Title[i])
+                            </div>
+                        }
+                    </tr>
+                }
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

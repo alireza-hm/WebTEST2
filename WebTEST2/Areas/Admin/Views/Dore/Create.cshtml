@@ -1,0 +1,109 @@
+﻿@model WebTEST2.Areas.Admin.Models.DoreModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>DoreModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Long" class="control-label"></label>
+                <input asp-for="Long" class="form-control" />
+                <span asp-validation-for="Long" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descs" class="control-label"></label>
+                <input asp-for="Descs" class="form-control" />
+                <span asp-validation-for="Descs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdminId" class="control-label"></label>
+                <input asp-for="AdminId" class="form-control" />
+                <span asp-validation-for="AdminId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CatId" class="control-label"></label>
+                <input asp-for="CatId" class="form-control" />
+                <span asp-validation-for="CatId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @for (int i = 0; i < Model.Vijegiha.Count; i++)
+                {
+                    <tr>
+                        @Html.EditorFor(model => model.CheckVijegiha[i])
+                    </tr>
+                    <tr>
+                        @Html.DisplayFor(model => model.Vijegiha[i])
+                    </tr>
+                    <tr>
+                        @Html.HiddenFor(model => model.Vijegiha[i].Id)
+                        @Html.HiddenFor(model => model.Vijegiha[i].Title)
+                        @Html.HiddenFor(model => model.Vijegiha[i].Type)
+                        @if (Model.Vijegiha[i].Type == "multi_choice")
+                        {
+                            @for (int j = 0; j < Model.Vijegiha[i].Choices.Count; j++)
+                            {
+                                @Html.HiddenFor(model => model.Vijegiha[i].Choices[j].data)
+                                @Html.HiddenFor(model => model.Vijegiha[i].Choices[j].number)
+                            }
+                        }
+                    </tr>
+                    @if (Model.Vijegiha[i].Type == "multi_choice")
+                    {
+                        <tr>
+                            @foreach (var ii in Model.Vijegiha[i].Choices)
+                            {
+                                @ii.data
+                                <b> : </b> @ii.number
+                                <br />
+                            }
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>empty</tr>
+                    }
+                    <br />
+                    <b>--------------------------------</b>
+                    <br />
+                }
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

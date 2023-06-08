@@ -1,0 +1,112 @@
+﻿@model WebTEST2.Areas.Admin.Models.VijegiModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>VijegiModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <table id="tbemployee">
+                    <thead>
+                        <tr>
+                            <td>Data</td>
+                            <td>Number</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody class="table" id="tbbody">
+                        @if (Model == null || Model.Choices == null || Model.Choices.Count == 0)
+                        {
+                            <tr>
+                                <td>
+                                    <input class="form-control" id="data" name="Choices[0].data" />
+                                </td>
+                                <td>
+                                    <input class="form-control" id="number" name="Choices[0].number" />
+                                </td>
+                                <td><input type="button" class="btnremove" value="remove" /></td>
+                            </tr>
+                        }
+                        else if (Model.Choices != null && Model.Choices.Count > 0)
+                        {
+                            @for (var i = 0; i < Model.Choices.Count; i++)
+                            {
+
+                                <tr>
+                                    <td>
+                                        <input class="form-control" asp-for="@Model.Choices[@i].data" />
+                                    </td>
+                                    <td>
+                                        <input class="form-control" asp-for="@Model.Choices[@i].number" />
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"><input type="button" id="btnAddNew" value="Add New Choices" class="btn btn-primary" /></td>
+                        </tr>
+
+                    </tfoot>
+                </table>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(function() {
+            $("#btnAddNew").click(function() {
+                var count = $("#tbbody >tr").length;
+                $("#tbbody").append("<tr><td> <input class='form-control' id='data' name='Choices[" + count + "].data'></td><td> <input class='form-control' id='number' name='Choices[" + count + "].number'></td> <td><input type='button' class='btnremove' value='remove'/></td></tr>");
+
+                AddRemoveAction();
+            });
+
+
+            AddRemoveAction();
+
+            //add remove button click event
+            function AddRemoveAction() {
+                $(".btnremove").each(function(index, item) {
+                    $(item).click(function() {
+                        $(this).closest('tr').remove();
+                    });
+
+                })
+            }
+        });
+    </script>
+}
